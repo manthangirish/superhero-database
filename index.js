@@ -3,6 +3,8 @@ import axios from "axios";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
+import ejs from "ejs";
 
 dotenv.config();
 
@@ -13,6 +15,12 @@ const apiKey = process.env.API_KEY;
 app.use(cors());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Set the view engine to EJS
+app.set("view engine", "ejs");
+
+// Set the views directory (if necessary)
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
   res.redirect("/home");
