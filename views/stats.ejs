@@ -1,0 +1,51 @@
+<%- include('partials/header.ejs') %>
+<div class="d-flex flex-column">
+
+
+<div class="d-flex flex-content-center my-4 container-fluid"  ">
+    <div class="mx-auto">
+
+        <form
+        action="/search-stats "
+        class="d-flex input-group g-0"
+        method="POST"
+        role="search"
+        >
+    <input
+    type="text"
+    class="form-control me-2"
+    placeholder="Search Superhero "
+    aria-label="Recipient's username"
+    aria-describedby="button-addon2"
+    name="input"
+    />
+    <button class="btn btn-warning" type="submit">Search</button>
+</form>
+</div>
+</div>
+<div
+      class="search-results mx-5 d-flex flex-row flex-wrap flex-content-center mt-4 " 
+    >
+      <% if (locals.data) { %> <% data.forEach(element => { %>
+      <div class="card m-2 text-bg-secondary" style="width: 15rem">
+       <img src="<%= element.image.url %>" class="card-img-top"   alt="<%= element.name %>" onerror="this.src='/images/nopic.png'" />
+        <div class="card-body">
+          <h5 class="card-title"><%= element.name %> </h5>
+          <p>Intelligence: <%= element.powerstats.intelligence %></p>
+          <p>Speed: <%= element.powerstats.speed %></p>
+          <p>Strength: <%= element.powerstats.strength%></p>
+          <p>Durability: <%= element.powerstats.durability%></p>
+          <p>Power: <%= element.powerstats.power %></p>
+          <p>Combat: <%= element.powerstats.combat%></p>
+        
+
+        
+            
+          </div>
+        </div>
+        <% }) %> <% } %>
+      </div>
+      
+    </div>
+</div> 
+</div><%- include('partials/footer.ejs') %>
